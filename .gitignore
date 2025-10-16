@@ -4,7 +4,11 @@
 /.env.local.php
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
-/public/assets/images/uploads
+# Ignore tout le contenu du dossier uploads
+/public/assets/images/uploads/*
+
+# Mais garde le dossier uploads lui-même
+!/public/assets/images/uploads/.gitkeep
 /public/bundles/
 /var/
 /vendor/
