@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Media{% endblock %}
+
+{% block body %}
+    <h1>Modifier Media</h1>
+
+    {{ include('media/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

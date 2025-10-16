@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}| Robin Godde
+			{% endblock %}
+		</title>
+		<link rel="icon" type="image/png" href="{{ asset('assets/icons/favicon.png') }}">
+		<link rel="stylesheet" href="{{ asset('assets/style/style.css') }}">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.22.2/dist/css/uikit.min.css"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+		<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet"> {% block stylesheets %}{% endblock %}
+		</head>
+
+		<body>
+			{# Navbar #}
+			{% include "nav/nav.html.twig" %}
+
+			{% block body %}{% endblock %}
+
+			{# Footer #}
+			{% include "footer/footer.html.twig" %}
+
+			{% block javascripts %}
+				<script src="https://cdn.jsdelivr.net/npm/uikit@3.22.2/dist/js/uikit.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/uikit@3.22.2/dist/js/uikit-icons.min.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+				<script src="{{ asset('assets/js/app.js') }}"></script>
+			{% endblock %}
+		</body>
+
+	</html>

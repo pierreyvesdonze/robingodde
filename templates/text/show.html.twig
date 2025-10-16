@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ text.title }}
+{% endblock %}
+
+{% block body %}
+	<section class="uk-section uk-section-small uk-flex uk-flex-center">
+		<div
+			class="uk-width-3xlarge@s uk-width-xlarge@m uk-width-1-1 uk-text-center" style="max-width: 1200px;">
+
+			{# --- Titre --- #}
+			<h1 class="uk-heading-line uk-text-center uk-margin-medium-bottom">
+				<span>{{ text.title }}</span>
+			</h1>
+
+			{# --- Card contenu --- #}
+			<div class="uk-card uk-card-default uk-card-body uk-border-rounded uk-box-shadow-small uk-margin-medium-bottom">
+				<div class="uk-text-center uk-article quill-content">
+					{{ text.content|raw }}
+				</div>
+			</div>
+
+			{# --- Boutons édition et retour --- #}
+			<div class="uk-flex uk-flex-center uk-flex-middle uk-grid-small uk-margin-bottom" uk-grid>
+				<div>
+					<a href="{{ path('app_text_index') }}" class="uk-button uk-button-default uk-border-pill uk-box-shadow-hover-small">← Back to list</a>
+				</div>
+
+				{% if is_granted('ROLE_ADMIN') %}
+					<div>
+						<a href="{{ path('app_text_edit', {'id': text.id}) }}" class="uk-button uk-button-primary uk-border-pill uk-box-shadow-hover-small">Modifier</a>
+					</div>
+				</div>
+
+				{# --- Séparation + bouton supprimer --- #}
+				<hr class="uk-divider-icon">
+				<div>
+					{{ include('text/_delete_form.html.twig', {
+                    'attr': {
+                        'class': 'uk-button uk-button-danger uk-border-pill uk-button-small uk-margin-small-top'
+                    }
+                }) }}
+				</div>
+			{% endif %}
+
+		</div>
+	</section>
+{% endblock %}

@@ -1,0 +1,59 @@
+{{ form_start(form, {'attr': {'class': 'uk-form-stacked uk-flex uk-flex-center uk-margin-large-top'}}) }}
+
+<div class="uk-width-2xlarge@s uk-width-large@m uk-width-1-1">
+    
+    <div class="uk-card uk-card-default uk-card-body uk-border-rounded uk-box-shadow-hover-large">
+
+        {# --- Champ titre --- #}
+        <div class="uk-margin">
+            {{ form_label(form.title, null, {
+                'label_attr': {'class': 'uk-form-label uk-text-bold uk-text-large'}
+            }) }}
+            <div class="uk-form-controls">
+                {{ form_widget(form.title, {
+                    'attr': {
+                        'class': 'uk-input uk-border-rounded uk-box-shadow-small',
+                        'placeholder': 'Titre du texte...'
+                    }
+                }) }}
+                {{ form_errors(form.title) }}
+            </div>
+        </div>
+
+        {# --- Champ contenu avec Quill --- #}
+        <div class="uk-margin">
+            {{ form_label(form.content, null, {
+                'label_attr': {'class': 'uk-form-label uk-text-bold uk-text-large'}
+            }) }}
+            <div class="uk-form-controls">
+                <div id="editor"
+                     class="uk-border-rounded uk-box-shadow-small uk-padding-small"
+                     style="min-height: 250px; background: #fff;">
+                </div>
+                {{ form_widget(form.content) }}
+                {{ form_errors(form.content) }}
+            </div>
+        </div>
+
+        {# --- Bouton Valider --- #}
+        <div class="uk-margin-large-top uk-text-center">
+            {{ form_widget(form.submit, {
+                'attr': {
+                    'class': 'uk-button uk-button-primary uk-border-pill uk-box-shadow-hover-large uk-width-medium'
+                }
+            }) }}
+        </div>
+
+        {# --- Boutons Back --- #}
+        <div class="uk-margin-large-top uk-flex uk-flex-center uk-grid-small" uk-grid>
+            <div>
+                <a href="{{ path('app_text_index') }}"
+                   class="uk-button uk-button-default uk-button-small uk-border-pill uk-box-shadow-hover-small">
+                    ← Back to list
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ form_end(form) }}

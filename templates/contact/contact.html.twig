@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact
+{% endblock %}
+
+{% block body %}
+	<div class="uk-section uk-flex uk-flex-middle uk-flex-center" style="min-height: 70vh; background: #fff;">
+		<div class="uk-text-center" uk-scrollspy="cls: uk-animation-fade; delay: 100;">
+			<h1 class="uk-heading-medium uk-text-bold uk-margin-small">Contact</h1>
+			<p class="uk-text-lead uk-margin-remove-top" style="font-weight: 300;">
+				<a href="mailto:godderobin@gmail.com" class="uk-link-reset uk-text-primary uk-text-bold" style="text-decoration: none;">
+					godderobin@gmail.com
+				</a>
+			</p>
+		</div>
+	</div>
+	<div class="uk-text-center uk-margin-top" uk-scrollspy="cls: uk-animation-fade; delay: 300">
+		<a href="{{ path('app_home') }}" class="uk-button uk-button-default uk-border-pill">← Back to Home</a>
+	</div>
+{% endblock %}

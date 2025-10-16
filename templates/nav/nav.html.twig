@@ -1,0 +1,29 @@
+<nav class="uk-navbar-container" uk-sticky="top: 0; animation: uk-animation-slide-top;">
+
+    <div class="uk-container">
+        <div uk-navbar="mode: hover">
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-toggle" href="#">
+                    <span uk-navbar-toggle-icon></span>
+                    <span class="uk-margin-xsmall-left">Menu</span>
+                </a>
+                <div class="uk-navbar-dropdown">
+                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                        <li class="uk-link"><a href="{{ path('app_home') }}">Home</a></li>
+                        <li class="uk-link"><a href="{{ path('app_project_index') }}">Works</a></li>
+                        <li class="uk-link"><a href="{{ path('app_text_index') }}">Texts</a></li>
+                        <li class="uk-link"><a href="{{ path('app_project_index') }}">Media</a></li>
+                        {#<li class="uk-link"><a href="{{ path('app_project_index') }}">Workshop</a></li>#}
+                        <li class="uk-link"><a href="{{ path('app_contact') }}">Contact</a></li>
+                        {% if not app.user %}
+                            <li class="uk-link"><a href="{{ path('app_login') }}">Connexion</a></li>
+                            <li class="uk-link"><a href="{{ path('app_register') }}">Inscription</a></li>
+                        {% else %}
+                            <li class="uk-link"><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

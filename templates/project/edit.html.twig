@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le projet
+{% endblock %}
+
+{% block body %}
+	<div class="uk-container uk-margin-large-top uk-text-center">
+
+		<h1 class="uk-heading-line uk-text-bold uk-margin-large-bottom">
+			<span>Modifier le projet</span>
+		</h1>
+
+		<div class="uk-width-1-2@m uk-align-center uk-margin-large-bottom">
+			{{ include('project/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+		</div>
+
+		<div class="uk-flex uk-flex-center uk-flex-middle uk-margin-large-top uk-grid-small" uk-grid>
+			<div>
+				<a href="{{ path('app_project_show', {'id': project.id}) }}" class="uk-button uk-button-default uk-border-pill uk-box-shadow-hover-small">
+					← Back
+				</a>
+			</div>
+
+			<div>
+				{{ include('project/_delete_form.html.twig', {
+                    'attr': {'class': 'uk-display-inline-block'}
+                }) }}
+			</div>
+		</div>
+	</div>
+    
+{% endblock %}

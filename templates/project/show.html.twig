@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ project.title }}
+{% endblock %}
+
+{% block body %}
+	<div class="uk-container uk-margin-large-top" uk-scrollspy="cls: uk-animation-fade; target: > *; delay: 100;">
+		<h1 class="uk-text-center uk-margin-large-bottom">{{ project.title }}</h1>
+
+		{# Description #}
+		<p class="uk-text-center uk-text-lead uk-margin-large-bottom" uk-scrollspy="cls: uk-animation-fade; delay: 150;">
+			{{ project.description }}
+		</p>
+
+		{# Image principale #}
+		<div class="uk-text-center uk-margin-large-bottom" uk-scrollspy="cls: uk-animation-fade; delay: 200;">
+			<img src="{{ asset('assets/images/uploads/' ~ project.mainImage) }}" alt="{{ project.title }}" class="uk-border-rounded uk-box-shadow-medium" style="width: 100%; height: auto; object-fit: contain;">
+		</div>
+
+		{# Galerie Masonry pour les images secondaires #}
+		{% if project.images is defined and project.images|length > 0 %}
+			<div class="uk-grid-small uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l" 
+			     uk-grid="masonry: true" 
+			     uk-lightbox="animation: fade"
+			     uk-scrollspy="target: > div; cls: uk-animation-fade; delay: 100;">
+				{% for image in project.images %}
+					<div>
+						<a href="{{ asset('assets/images/uploads/' ~ image.path) }}" data-caption="{{ project.title }}">
+							<img src="{{ asset('assets/images/uploads/' ~ image.path) }}" alt="{{ project.title }}" class="uk-border-rounded uk-transition-scale-up uk-transition-opaque" style="width: 100%; height: auto;">
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+
+		{# Liens de navigation #}
+		<div class="uk-margin-large-top uk-text-center" uk-scrollspy="cls: uk-animation-fade; delay: 300;">
+			<a href="{{ path('app_project_index') }}" class="uk-button uk-button-default uk-border-pill">← Back to list</a>
+			
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path('app_project_edit', {'id': project.id}) }}" class="uk-button uk-button-primary uk-border-pill">Modifier</a>
+				<hr class="uk-divider-icon">
+				{{ include('project/_delete_form.html.twig') }}
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Texte
+{% endblock %}
+
+{% block body %}
+	<h1>Modifier ce texte</h1>
+
+	{{ include('text/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

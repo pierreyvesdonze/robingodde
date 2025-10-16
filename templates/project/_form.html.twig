@@ -1,0 +1,49 @@
+{{ form_start(form, {'attr': {'class': 'uk-form-stacked uk-container uk-margin-large-top'}}) }}
+
+<div class="uk-margin">
+	{{ form_label(form.title, null, {'label_attr': {'class': 'uk-form-label'}}) }}
+	<div class="uk-form-controls">
+		{{ form_widget(form.title, {'attr': {'class': 'uk-input uk-border-rounded uk-box-shadow-small', 'placeholder': 'Titre du projet'}}) }}
+		{{ form_errors(form.title) }}
+	</div>
+</div>
+
+<div class="uk-margin">
+	{{ form_label(form.description, null, {'label_attr': {'class': 'uk-form-label'}}) }}
+	<div class="uk-form-controls">
+		{{ form_widget(form.description) }}
+		{{ form_errors(form.description) }}
+	</div>
+</div>
+
+<div class="uk-margin">
+	{{ form_label(form.mainImage, null, {'label_attr': {'class': 'uk-form-label'}}) }}
+	<div class="uk-form-controls">
+		{{ form_widget(form.mainImage, {'attr': {'class': 'uk-input uk-border-rounded uk-box-shadow-small'}}) }}
+		{{ form_errors(form.mainImage) }}
+	</div>
+</div>
+
+<div class="uk-margin">
+	{{ form_label(form.images, null, {'label_attr': {'class': 'uk-form-label'}}) }}
+	<div class="uk-form-controls">
+		{{ form_widget(form.images, {'attr': {'class': 'uk-input uk-border-rounded uk-box-shadow-small'}}) }}
+		{{ form_errors(form.images) }}
+	</div>
+</div>
+
+<div class="uk-margin">
+	{{ form_label(form.date, "Année", {'label_attr': {'class': 'uk-form-label'}}) }}
+	<div class="uk-form-controls">
+		{{ form_widget(form.date, {'attr': {'class': 'uk-input uk-border-rounded uk-box-shadow-small', 'placeholder': '2025'}}) }}
+		{{ form_errors(form.date) }}
+	</div>
+</div>
+
+<div class="uk-margin-large-top uk-text-center">
+	<button class="uk-button uk-button-default uk-border-pill uk-box-shadow-hover-large">
+		{{ button_label|default('💾 Enregistrer') }}
+	</button>
+</div>
+
+{{ form_end(form) }}

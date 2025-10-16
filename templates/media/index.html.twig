@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Media{% endblock %}
+
+{% block body %}
+    <h1 class="uk-text-center uk-margin-large-top">Media</h1>
+
+    <div class="uk-container uk-margin-large-bottom">
+
+        {% if media is not empty %}
+            <ul class="uk-list uk-list-large uk-text-center" uk-scrollspy="target: > li; cls: uk-animation-fade; delay: 100">
+
+                {% for medium in media %}
+                    <li class="uk-margin-large-top">
+                        <a href="{{ medium.link }}" target="_blank" rel="noopener noreferrer" class="uk-link-heading uk-text-bold uk-text-large">
+                            {{ medium.title }}
+                            <span uk-icon="icon: link-external; ratio: 0.9" class="uk-margin-small-left"></span>
+                        </a>
+
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="uk-margin-small-top uk-flex uk-flex-center uk-flex-middle uk-gap-small uk-flex-column uk-flex-row@s">
+                                <a href="{{ path('app_media_edit', {'id': medium.id}) }}" class="uk-button uk-button-default uk-border-pill uk-button-small">
+                                    Modifier
+                                </a>
+
+                                <form method="post" action="{{ path('app_media_delete', {'id': medium.id}) }}" onsubmit="return confirm('Supprimer ce média ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ medium.id) }}">
+                                    <button class="uk-button uk-button-danger uk-border-pill uk-button-small">Supprimer</button>
+                                </form>
+                            </div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3 class="uk-text-center uk-margin-large-top uk-text-italic">
+                Aucun média pour le moment, mon lapin 🐇
+            </h3>
+        {% endif %}
+
+        <div class="uk-text-center uk-margin-large-top" uk-scrollspy="cls: uk-animation-fade; delay: 200;">
+            <div class="uk-flex uk-flex-center uk-flex-middle uk-gap-small uk-flex-column uk-flex-row@s">
+                <a href="{{ path('app_home') }}" class="uk-button uk-button-default uk-border-pill">← Back to Home</a>
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('app_media_new') }}" class="uk-button uk-button-primary uk-border-pill">
+                        Ajouter un média
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
