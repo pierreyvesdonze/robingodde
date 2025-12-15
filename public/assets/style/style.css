@@ -169,6 +169,10 @@ CARDS
   text-align: center;
 }
 
+.text-content p {
+  color: black !important;
+}
+
 /* Texte en blanc */
 .project-card .uk-card-title,
 .project-card p {
