@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Text;
-use App\Form\TextType;
+use App\Form\TextFormType;
 use App\Repository\TextRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +26,7 @@ final class TextController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $text = new Text();
-        $form = $this->createForm(TextType::class, $text);
+        $form = $this->createForm(TextFormType::class, $text);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -55,7 +55,7 @@ final class TextController extends AbstractController
     #[Route('/{id}/edit', name: 'app_text_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Text $text, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(TextType::class, $text);
+        $form = $this->createForm(TextFormType::class, $text);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

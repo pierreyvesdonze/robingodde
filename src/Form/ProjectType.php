@@ -3,9 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Project;
-use App\Entity\Image;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -28,10 +26,10 @@ class ProjectType extends AbstractType
                     'placeholder' => 'Titre du projet'
                 ],
                 'constraints' => [
-                    new Length([
-                        'max' => 255,
-                        'maxMessage' => 'Le nom du projet ne peut pas dépasser 255 caractères.',
-                    ]),
+                    new Length(
+                        max: 255,
+                        maxMessage: 'Le nom du projet ne peut pas dépasser 255 caractères.'
+                    ),
                 ],
             ])
             ->add('description', TextareaType::class, [
@@ -43,19 +41,19 @@ class ProjectType extends AbstractType
             ])
             ->add('mainImage', FileType::class, [
                 'label' => 'Image principale',
-                'mapped' => false, // Si tu gères l'upload dans le contrôleur
+                'mapped' => false,
                 'required' => false,
                 'constraints' => [
-                    new File([
-                        'maxSize' => '5M',
-                        'mimeTypes' => [
+                    new File(
+                        maxSize: '5M',
+                        mimeTypes: [
                             'image/jpeg',
                             'image/png',
                             'image/gif',
                             'image/webp',
                         ],
-                        'mimeTypesMessage' => 'Veuillez télécharger une image valide (JPEG, PNG, GIF, WEBP).',
-                    ])
+                        mimeTypesMessage: 'Veuillez télécharger une image valide (JPEG, PNG, GIF, WEBP).'
+                    )
                 ],
             ])
             ->add('images', FileType::class, [
@@ -64,23 +62,23 @@ class ProjectType extends AbstractType
                 'required' => false,
                 'multiple' => true,
                 'constraints' => [
-                    new All([
-                        'constraints' => [
-                            new File([
-                                'maxSize' => '5M',
-                                'mimeTypes' => [
+                    new All(
+                        constraints: [
+                            new File(
+                                maxSize: '5M',
+                                mimeTypes: [
                                     'image/jpeg',
                                     'image/png',
                                     'image/gif',
                                     'image/webp',
                                 ],
-                                'mimeTypesMessage' => 'Veuillez télécharger une image valide (JPEG, PNG, GIF, WEBP).',
-                            ])
+                                mimeTypesMessage: 'Veuillez télécharger une image valide (JPEG, PNG, GIF, WEBP).'
+                            )
                         ]
-                    ])
+                    )
                 ],
             ])
-              ->add('date', IntegerType::class, [
+            ->add('date', IntegerType::class, [
                 'label' => false,
                 'attr' => [
                     'class'       => 'uk-input',
